@@ -255,7 +255,7 @@ def get_apod_info(image_id):
             'title': apod_info[0],
             'explanation': apod_info[1],
             'file_path': apod_info[2],
-            'exists_in_cache': True  # Indicate whether the image exists in the cache
+            'exists_in_cache': True 
         }
     else:
         return None
