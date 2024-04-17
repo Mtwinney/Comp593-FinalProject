@@ -11,9 +11,10 @@ Usage:
 Parameters:
   apod_date = APOD date (format: YYYY-MM-DD)
 """
-from datetime import date
+from datetime import datetime, date
 import os
 import image_lib
+import sys
 
 # Full paths of the image cache folder and database
 # - The image cache directory is a subdirectory of the specified parent directory.
@@ -52,6 +53,19 @@ def get_apod_date():
         date: APOD date
     """
     # TODO: Complete function body
+    if len(sys.argv) > 1:
+        try:
+            apod_date = datetime.strptime(sys.argv[1], "%Y-%m-%d").date()
+            today = datetime.today().date()
+            min_date = datetime(1995, 6, 16).date()  # Minimum APOD date
+            if apod_date < min_date or apod_date > today:
+                raise ValueError("Invalid APOD date.")
+            return apod_date
+        except ValueError:
+            print("Error: Invalid APOD date. Please provide a date in the format YYYY-MM-DD.")
+            sys.exit(1)
+        else:
+            return datetime.today().date()
     # Hint: The following line of code shows how to convert and ISO-formatted date string to a date object
     apod_date = date.fromisoformat('2022-12-25')
     return apod_date
@@ -181,6 +195,7 @@ def get_all_apod_titles():
         list: Titles of all images in the cache
     """
     # TODO: Complete function body
+
     # NOTE: This function is only needed to support the APOD viewer GUI
     return
 
