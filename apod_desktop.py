@@ -17,7 +17,6 @@ import sys
 import requests
 import sqlite3
 import re
-import hashlib
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 image_cache_dir = os.path.join(script_dir, 'images')
